@@ -1,35 +1,57 @@
 package ex3;
 
-/**
+/** Classe qui décrit un zoo
  * @author DIGINAMIC
  */
 public class Zoo {
 
-	private String nom;
-	private SavaneAfricaine savaneAfricaine;
-	private ZoneCarnivore zoneCarnivore;
-	private FermeReptile fermeReptile;
-	private Aquarium aquarium;
+	/** Nom du Zoo */
+	private String 				nom;
+	/** Zone africaine */
+	private SavaneAfricaine 	savaneAfricaine;
+	/** Zone Carnivore */
+	private ZoneCarnivore 		zoneCarnivore;
+	/** Zone reptile */
+	private FermeReptile 		fermeReptile;
+	/** Zone Aquarium */
+	private Aquarium 			aquarium;
 	
+	/** Constructeur */
 	public Zoo(String nom){
-		this.nom = nom;
+		this.nom 				= nom;
+		this.savaneAfricaine	= new SavaneAfricaine();
+		this.zoneCarnivore		= new ZoneCarnivore();
+		this.fermeReptile		= new FermeReptile();
+		this.aquarium			= new Aquarium();
 	}
 	
-	public void addAnimal(String nomAnimal, String typeAnimal, String comportement){
-		if (typeAnimal.equals("MAMMIFERE") && comportement.equals("CARNIVORE")){
-			zoneCarnivore.addAnimal(typeAnimal, nomAnimal, comportement);
+	/** Ajouter un animal dans une zone si celle ci l'accepte */
+	public void addAnimal( Animal animal){
+		try {
+			savaneAfricaine.addAnimal(animal);		
+		}catch( Exception ie) {
+			try {
+				zoneCarnivore.addAnimal(animal);		
+			}catch( Exception ie2) {
+				try {
+					fermeReptile.addAnimal(animal);		
+				}catch( Exception ie3) {
+					try {
+						aquarium.addAnimal(animal);		
+					}catch( Exception ie4) {
+						System.out.println(ie4.getMessage());
+					}
+					
+				}
+				
+			}
+
 		}
-		else if (typeAnimal.equals("MAMMIFERE") && comportement.equals("HERBIVORE")){
-			savaneAfricaine.addAnimal(typeAnimal, nomAnimal, comportement);
-		}
-		else if (typeAnimal.equals("REPTILE")){
-			fermeReptile.addAnimal(typeAnimal, nomAnimal, comportement);
-		}
-		else if (typeAnimal.equals("POISSON")){
-			aquarium.addAnimal(typeAnimal, nomAnimal, comportement);
-		}
+		
+
 	}
 	
+	/** Afficher la liste des animaux du Zoo, */
 	public void afficherListeAnimaux(){
 		savaneAfricaine.afficherListeAnimaux();
 		zoneCarnivore.afficherListeAnimaux();

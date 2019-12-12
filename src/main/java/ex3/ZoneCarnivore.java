@@ -2,25 +2,53 @@ package ex3;
 
 import java.util.List;
 
-public class ZoneCarnivore {
+/** Zone  pour les animaux carnivores 
+ * 
+ * @author acer
+ *
+ */
+public class ZoneCarnivore extends Zone {
+	/** Masse moyenne en kg de nourriture consommée par 1 carnivore */
+	public static final double MASSE_NOURRITURE = 10;
 
-	private List<String> types;
-	private List<String> noms;
-	private List<String> comportements;
+	public ZoneCarnivore() {
+		super( );
+	}
+
 	
-	public void addAnimal(String typeAnimal, String nomAnimal, String comportement) {
-		types.add(typeAnimal);
-		noms.add(nomAnimal);
-		comportements.add(comportement);
+	@Override
+	/** Retourne le type de Zone 
+	 * 
+	 */
+	public TypeZone getZone() {
+		return TypeZone.ZONE_CARNIVORE;	
 	}
 	
-	public void afficherListeAnimaux(){
-		for (String nom: noms){
-			System.out.println(nom);
-		}
+	@Override
+	/** Retourne la masse de nourriture pour un animal 
+	 * 
+	 */
+	public double getPoids() {
+		// TODO Auto-generated method stub
+		return MASSE_NOURRITURE;
 	}
 	
-	public double calculerKgsNourritureParJour(){
-		return noms.size() * 10;
+	@Override
+	/** Retourner true si la zone accepte l'animal
+	 *  
+	 */
+	public boolean acceptAnimal( Animal animal) {
+		return ( animal.getTypeAnimal().equals( TypeAnimal.MAMMIFERE)
+				 &&
+				 animal.getComportement().equals( Comportement.CARNIVORE) );
 	}
+	
+	
+	
+
 }
+
+	
+
+
+

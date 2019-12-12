@@ -11,32 +11,55 @@ public class Pret {
 	private Date dateDebut;
 	private Date dateFin;
 	
+	/** Initialiser les constructeurs 
+	 * 
+	 * @param capital
+	 * @param taux
+	 * @param dateDebut
+	 */
+	public void InitConstructeur( double capital, double taux, Date dateDebut) {
+		this.capital 	= capital;
+		this.taux 		= taux;
+		this.dateDebut 	= dateDebut;
+		this.strategy 	= new PretATerme();
+		
+	}
+	
+	/** Constructeur 1 
+	 * 
+	 * @param capital
+	 * @param taux
+	 * @param dateDebut
+	 */
 	public Pret(double capital, double taux, Date dateDebut) {
 		super();
-		this.strategy = new PretATerme();
-		this.capital = capital;
-		this.taux = taux;
-		this.dateDebut = dateDebut;
+		InitConstructeur( capital, taux, dateDebut);
 	}
 	
+	/** Constructeur 2
+	 * 
+	 * @param capital
+	 * @param taux
+	 * @param dateDebut
+	 */
 	public Pret(double capital, double taux, Date dateDebut, Date dateFin) {
 		super();
-		this.strategy = new PretATerme();
-		this.capital = capital;
-		this.taux = taux;
-		this.dateDebut = dateDebut;
+		InitConstructeur( capital, taux, dateDebut);
 		this.dateFin = dateFin;
 	}
 	
+	/** Constructeur 3
+	 * 
+	 * @param capital
+	 * @param taux
+	 * @param dateDebut
+	 */
 	public Pret(double capital, double capitalRestantDu, double taux, Date dateDebut, Date dateFin) {
 		super();
-		this.strategy = new PretATerme();
-		this.capital = capital;
-		this.capitalRestantDu = capitalRestantDu;
-		this.taux = taux;
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
-	}
+		InitConstructeur( capital, taux, dateDebut);
+		this.dateFin 			= dateFin;
+		this.capitalRestantDu 	= capitalRestantDu;
+		}
 
 	/** Getter for strategy
 	 * @return the strategy
